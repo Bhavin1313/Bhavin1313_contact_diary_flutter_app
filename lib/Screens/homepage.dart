@@ -1,3 +1,4 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -18,10 +19,28 @@ class _HomePageState extends State<HomePage> {
         child: Icon(Icons.add),
       ),
       appBar: AppBar(
-        title: Text("Home Page"),
+        title: AnimatedTextKit(
+          repeatForever: true,
+          animatedTexts: [
+            RotateAnimatedText("Home Page"),
+          ],
+        ),
+        centerTitle: true,
       ),
       body: Center(
-        child: Text("No Contact Add Yet.."),
+        child: AnimatedTextKit(
+          repeatForever: true,
+          animatedTexts: [
+            TyperAnimatedText(
+              "No Contact Add Yet..",
+              textStyle: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+                color: Colors.red.withOpacity(.5),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
