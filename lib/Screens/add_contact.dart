@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:animated_text_kit/animated_text_kit.dart';
@@ -53,15 +54,52 @@ class _AddContactPageState extends State<AddContactPage> {
             onPressed: () {
               if (formKey.currentState!.validate()) {
                 formKey.currentState!.save();
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text("Saved Successfully..."),
-                  ),
-                );
+                setState(() {
+                  Timer(Duration(seconds: 3), () {
+                    Navigator.pop(context);
+                  });
+                  showDialog(
+                    context: context,
+                    builder: (context) => AlertDialog(
+                      title: Row(
+                        children: [
+                          Icon(Icons.person_pin),
+                          Text(
+                            "${firstname} Added",
+                            style: TextStyle(
+                              fontSize: 15,
+                            ),
+                          ),
+                        ],
+                      ),
+                      alignment: Alignment.bottomCenter,
+                    ),
+                  );
+                });
+
+                // Navigator.pop(context);
               } else {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text("Please Enter Full Detail..."),
+                showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                    elevation: 5,
+                    title: Text(
+                      "Add info to save as a contact.",
+                      style: TextStyle(
+                        fontSize: 15,
+                      ),
+                    ),
+                    content: Row(
+                      children: [
+                        Spacer(),
+                        ElevatedButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: Text("ok"),
+                        ),
+                      ],
+                    ),
                   ),
                 );
               }
