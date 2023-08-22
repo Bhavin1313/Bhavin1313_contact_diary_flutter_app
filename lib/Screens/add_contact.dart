@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 
 class AddContactPage extends StatefulWidget {
@@ -15,7 +16,7 @@ class _AddContactPageState extends State<AddContactPage> {
   ImagePicker picker = ImagePicker();
   String? imagePath = "";
   XFile? image;
-  GlobalKey<FormState> formkey = GlobalKey<FormState>();
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
   int initialIndex = 0;
   String? firstname;
   String? lastname;
@@ -28,32 +29,46 @@ class _AddContactPageState extends State<AddContactPage> {
         title: AnimatedTextKit(
           repeatForever: true,
           animatedTexts: [
-            RotateAnimatedText("Add Contact"),
-            RotateAnimatedText("Here"),
+            RotateAnimatedText(
+              "Add Contact",
+              textStyle: GoogleFonts.getFont("Tilt Prism").merge(
+                const TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            RotateAnimatedText(
+              "Here",
+              textStyle: GoogleFonts.getFont("Tilt Prism").merge(
+                const TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
           ],
         ),
         centerTitle: true,
         actions: [
           IconButton(
             onPressed: () {
-              if (formkey.currentState!.validate()) {
-                formkey.currentState!.save();
+              if (formKey.currentState!.validate()) {
+                formKey.currentState!.save();
                 ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
+                  const SnackBar(
                     content: Text("Saved Successfully..."),
                   ),
                 );
               } else {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text("Plase Enter Full Detail..."),
+                  const SnackBar(
+                    content: Text("Please Enter Full Detail..."),
                   ),
                 );
               }
             },
-            icon: Icon(Icons.check),
+            icon: const Icon(Icons.check),
           ),
-          SizedBox(
+          const SizedBox(
             width: 10,
           ),
         ],
@@ -63,7 +78,7 @@ class _AddContactPageState extends State<AddContactPage> {
           FocusManager.instance.primaryFocus?.unfocus();
         },
         child: Form(
-          key: formkey,
+          key: formKey,
           child: Stepper(
             currentStep: initialIndex,
             onStepContinue: () {
@@ -85,18 +100,18 @@ class _AddContactPageState extends State<AddContactPage> {
                 state:
                     (initialIndex == 0) ? StepState.editing : StepState.indexed,
                 isActive: (initialIndex == 0) ? true : false,
-                title: Text("Enter Image"),
+                title: const Text("Enter Image"),
                 content: Column(
                   children: [
                     (image == null)
                         ? Container(
                             height: 100,
                             width: 100,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               shape: BoxShape.circle,
                               color: Colors.grey,
                             ),
-                            child: Center(
+                            child: const Center(
                               child: Text(
                                 "Add",
                                 style: TextStyle(
@@ -131,7 +146,7 @@ class _AddContactPageState extends State<AddContactPage> {
                               imagePath = image!.path;
                             });
                           },
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.photo,
                           ),
                         ),
@@ -144,7 +159,7 @@ class _AddContactPageState extends State<AddContactPage> {
                               imagePath = image!.path;
                             });
                           },
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.camera_alt_outlined,
                           ),
                         ),
@@ -157,12 +172,13 @@ class _AddContactPageState extends State<AddContactPage> {
                 state:
                     (initialIndex == 1) ? StepState.editing : StepState.indexed,
                 isActive: (initialIndex == 1) ? true : false,
-                title: Text("First Name"),
+                title: const Text("First Name"),
                 content: TextFormField(
                   validator: (val) {
                     if (val!.isEmpty) {
-                      return "Plese Enter First Name";
+                      return "Please Enter First Name";
                     }
+                    return null;
                   },
                   onSaved: (val) {
                     setState(() {
@@ -184,12 +200,13 @@ class _AddContactPageState extends State<AddContactPage> {
                 state:
                     (initialIndex == 2) ? StepState.editing : StepState.indexed,
                 isActive: (initialIndex == 2) ? true : false,
-                title: Text("Last Name"),
+                title: const Text("Last Name"),
                 content: TextFormField(
                   validator: (val) {
                     if (val!.isEmpty) {
-                      return "Plese Enter Last name";
+                      return "Please Enter Last name";
                     }
+                    return null;
                   },
                   onSaved: (val) {
                     setState(() {
@@ -211,12 +228,13 @@ class _AddContactPageState extends State<AddContactPage> {
                 state:
                     (initialIndex == 3) ? StepState.editing : StepState.indexed,
                 isActive: (initialIndex == 3) ? true : false,
-                title: Text("Phone Number"),
+                title: const Text("Phone Number"),
                 content: TextFormField(
                   validator: (val) {
                     if (val!.isEmpty) {
-                      return "Plese Enter Phone Number";
+                      return "Please Enter Phone Number";
                     }
+                    return null;
                   },
                   keyboardType: TextInputType.phone,
                   onSaved: (val) {
@@ -239,12 +257,13 @@ class _AddContactPageState extends State<AddContactPage> {
                 state:
                     (initialIndex == 4) ? StepState.editing : StepState.indexed,
                 isActive: (initialIndex == 4) ? true : false,
-                title: Text("Email"),
+                title: const Text("Email"),
                 content: TextFormField(
                   validator: (val) {
                     if (val!.isEmpty) {
-                      return "Plese Enter Email";
+                      return "Please Enter Email";
                     }
+                    return null;
                   },
                   keyboardType: TextInputType.emailAddress,
                   onSaved: (val) {
