@@ -38,6 +38,9 @@ dependencies:
   image_picker: ^1.0.2
   animated_text_kit: ^4.2.2
   google_fonts:
+  provider:
+  introduction_screen: ^3.1.11
+  shared_preferences: ^2.2.0
 
 dev_dependencies:
   flutter_test:

@@ -55,7 +55,7 @@ class _AddContactPageState extends State<AddContactPage> {
               if (formKey.currentState!.validate()) {
                 formKey.currentState!.save();
                 setState(() {
-                  Timer(Duration(seconds: 3), () {
+                  Timer(const Duration(seconds: 3), () {
                     Navigator.pop(context);
                   });
                   showDialog(
@@ -63,10 +63,10 @@ class _AddContactPageState extends State<AddContactPage> {
                     builder: (context) => AlertDialog(
                       title: Row(
                         children: [
-                          Icon(Icons.person_pin),
+                          const Icon(Icons.person_pin),
                           Text(
-                            "${firstname} Added",
-                            style: TextStyle(
+                            "$firstname Added",
+                            style: const TextStyle(
                               fontSize: 15,
                             ),
                           ),
@@ -83,7 +83,7 @@ class _AddContactPageState extends State<AddContactPage> {
                   context: context,
                   builder: (context) => AlertDialog(
                     elevation: 5,
-                    title: Text(
+                    title: const Text(
                       "Add info to save as a contact.",
                       style: TextStyle(
                         fontSize: 15,
@@ -91,12 +91,12 @@ class _AddContactPageState extends State<AddContactPage> {
                     ),
                     content: Row(
                       children: [
-                        Spacer(),
+                        const Spacer(),
                         ElevatedButton(
                           onPressed: () {
                             Navigator.pop(context);
                           },
-                          child: Text("ok"),
+                          child: const Text("ok"),
                         ),
                       ],
                     ),
@@ -181,7 +181,7 @@ class _AddContactPageState extends State<AddContactPage> {
                               source: ImageSource.camera,
                             );
                             setState(() {
-                              imagePath = image!.path;
+                              // imagePath = image!.path;
                             });
                           },
                           icon: const Icon(
@@ -194,7 +194,7 @@ class _AddContactPageState extends State<AddContactPage> {
                               source: ImageSource.gallery,
                             );
                             setState(() {
-                              imagePath = image!.path;
+                              // imagePath = image!.path;
                             });
                           },
                           icon: const Icon(
