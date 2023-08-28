@@ -2,7 +2,6 @@ import 'package:contact_diary_app_bhavin/Provider/theam_provider.dart';
 import 'package:contact_diary_app_bhavin/Screens/homepage.dart';
 import 'package:contact_diary_app_bhavin/Utils/mytheam.dart';
 import 'package:contact_diary_app_bhavin/one_time_intro_page.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -31,9 +30,9 @@ void main() async {
                 : ThemeMode.dark,
         initialRoute: (isVisitOnce == true) ? 'home' : '/',
         routes: {
-          '/': (context) => One_Time_Intro_Page(),
-          'home': (context) => HomePage(),
-          'add_contact_page': (context) => AddContactPage(),
+          '/': (context) => const One_Time_Intro_Page(),
+          'home': (context) => const HomePage(),
+          'add_contact_page': (context) => const AddContactPage(),
         },
       ),
     ),

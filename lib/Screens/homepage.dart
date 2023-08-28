@@ -1,4 +1,4 @@
-import 'dart:async';
+
 
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:contact_diary_app_bhavin/Provider/theam_provider.dart';
@@ -24,7 +24,7 @@ class _HomePageState extends State<HomePage> {
         child: const Icon(Icons.add),
       ),
       appBar: AppBar(
-        leading: Text(""),
+        leading: const Text(""),
         actions: [
           IconButton(
             onPressed: () {

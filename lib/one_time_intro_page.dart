@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-// ignore: camel_case_types
 class One_Time_Intro_Page extends StatefulWidget {
   const One_Time_Intro_Page({super.key});
 
@@ -10,7 +9,6 @@ class One_Time_Intro_Page extends StatefulWidget {
   State<One_Time_Intro_Page> createState() => _One_Time_Intro_PageState();
 }
 
-// ignore: camel_case_types
 class _One_Time_Intro_PageState extends State<One_Time_Intro_Page> {
   @override
   Widget build(BuildContext context) {
@@ -24,7 +22,7 @@ class _One_Time_Intro_PageState extends State<One_Time_Intro_Page> {
         pages: [
           PageViewModel(
             titleWidget: const Text(
-              "Contant Diary App",
+              "Content Diary App",
               style: TextStyle(
                   color: Colors.blueAccent,
                   fontSize: 20,
@@ -78,7 +76,7 @@ class _One_Time_Intro_PageState extends State<One_Time_Intro_Page> {
           ),
           PageViewModel(
             titleWidget: const Text(
-              "Contant Diary App",
+              "Content Diary App",
               style: TextStyle(
                   color: Colors.blueAccent,
                   fontSize: 20,
@@ -122,7 +120,7 @@ class _One_Time_Intro_PageState extends State<One_Time_Intro_Page> {
           ),
           PageViewModel(
             titleWidget: const Text(
-              "Contant Diary App",
+              "Content Diary App",
               style: TextStyle(
                   color: Colors.blueAccent,
                   fontSize: 20,
@@ -166,7 +164,7 @@ class _One_Time_Intro_PageState extends State<One_Time_Intro_Page> {
           ),
           PageViewModel(
             titleWidget: const Text(
-              "Contant Diary App",
+              "Content Diary App",
               style: TextStyle(
                   color: Colors.blueAccent,
                   fontSize: 20,
@@ -210,7 +208,7 @@ class _One_Time_Intro_PageState extends State<One_Time_Intro_Page> {
           ),
           PageViewModel(
             titleWidget: const Text(
-              "Contant Diary App",
+              "Content Diary App",
               style: TextStyle(
                   color: Colors.blueAccent,
                   fontSize: 20,
@@ -222,14 +220,14 @@ class _One_Time_Intro_PageState extends State<One_Time_Intro_Page> {
                 Container(
                   height: h * .3,
                   width: w,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     image: DecorationImage(
                       image: NetworkImage(
                           "https://as2.ftcdn.net/v2/jpg/04/81/37/69/1000_F_481376965_nqo8KhkCPe48nCFtEFDIAZ0msf9ocJym.jpg"),
                       fit: BoxFit.cover,
                     ),
                   ),
-                  child: Column(
+                  child: const Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
@@ -259,13 +257,13 @@ class _One_Time_Intro_PageState extends State<One_Time_Intro_Page> {
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 100,
                 ),
                 Container(
                   height: h * .3,
                   width: w,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     image: DecorationImage(
                       image: NetworkImage(
                         "https://mindxmaster.s3.amazonaws.com/wp-content/uploads/2020/06/mobile-smartphone-apps-ss-1920-800x450-1.jpg",
