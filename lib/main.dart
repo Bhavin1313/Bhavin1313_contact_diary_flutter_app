@@ -1,3 +1,4 @@
+import 'package:contact_diary_app_bhavin/Provider/contact_provider.dart';
 import 'package:contact_diary_app_bhavin/Provider/theam_provider.dart';
 import 'package:contact_diary_app_bhavin/Screens/homepage.dart';
 import 'package:contact_diary_app_bhavin/Utils/mytheam.dart';
@@ -18,6 +19,9 @@ void main() async {
       providers: [
         ChangeNotifierProvider<TheamProvider>(
           create: (context) => TheamProvider(),
+        ),
+        ChangeNotifierProvider<ContactProvider>(
+          create: (context) => ContactProvider(),
         )
       ],
       builder: (context, child) => MaterialApp(

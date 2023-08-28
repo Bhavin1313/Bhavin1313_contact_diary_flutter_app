@@ -11,4 +11,6 @@ class myTheam {
     brightness: Brightness.dark,
     colorSchemeSeed: Colors.white,
   );
+
+  static String? imagePath = "";
 }

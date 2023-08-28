@@ -1,10 +1,14 @@
 import 'dart:async';
 import 'dart:io';
-
+import 'package:contact_diary_app_bhavin/Utils/mytheam.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:contact_diary_app_bhavin/Provider/contact_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
+
+import '../Model/contact_model.dart';
 
 class AddContactPage extends StatefulWidget {
   const AddContactPage({super.key});
@@ -15,14 +19,18 @@ class AddContactPage extends StatefulWidget {
 
 class _AddContactPageState extends State<AddContactPage> {
   ImagePicker picker = ImagePicker();
-  String? imagePath = "";
+
   XFile? image;
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   int initialIndex = 0;
-  String? firstname;
-  String? lastname;
-  String? phonenumber;
-  String? email;
+  String firstname = "";
+  String lastname = "";
+  String phonenumber = "";
+  String email = "";
+  TextEditingController firstnamec = TextEditingController();
+  TextEditingController lastnamec = TextEditingController();
+  TextEditingController phonenumberc = TextEditingController();
+  TextEditingController emailc = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,30 +62,47 @@ class _AddContactPageState extends State<AddContactPage> {
             onPressed: () {
               if (formKey.currentState!.validate()) {
                 formKey.currentState!.save();
-                setState(() {
-                  Timer(const Duration(seconds: 3), () {
-                    Navigator.pop(context);
-                  });
-                  showDialog(
-                    context: context,
-                    builder: (context) => AlertDialog(
-                      title: Row(
-                        children: [
-                          const Icon(Icons.person_pin),
-                          Text(
-                            "$firstname Added",
-                            style: const TextStyle(
-                              fontSize: 15,
+                setState(
+                  () {
+                    Timer(const Duration(seconds: 3), () {
+                      Navigator.pop(context);
+                    });
+                    showDialog(
+                      context: context,
+                      builder: (context) => AlertDialog(
+                        title: Row(
+                          children: [
+                            const Icon(Icons.person_pin),
+                            Text(
+                              "$firstname Added",
+                              style: const TextStyle(
+                                fontSize: 15,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
+                        alignment: Alignment.bottomCenter,
                       ),
-                      alignment: Alignment.bottomCenter,
-                    ),
-                  );
-                });
+                    );
+                  },
+                );
 
-                // Navigator.pop(context);
+                Contact c1 = Contact(
+                  email: email,
+                  firstname: firstname,
+                  lastname: lastname,
+                  phonenumber: phonenumber,
+                );
+
+                Provider.of<ContactProvider>(context, listen: false)
+                    .AddContact(add_contact: c1);
+
+                firstnamec.clear();
+                lastnamec.clear();
+                emailc.clear();
+                phonenumberc.clear();
+
+                Navigator.pop(context);
               } else {
                 showDialog(
                   context: context,
@@ -181,7 +206,7 @@ class _AddContactPageState extends State<AddContactPage> {
                               source: ImageSource.camera,
                             );
                             setState(() {
-                              // imagePath = image!.path;
+                              myTheam.imagePath = image!.path;
                             });
                           },
                           icon: const Icon(
@@ -194,7 +219,7 @@ class _AddContactPageState extends State<AddContactPage> {
                               source: ImageSource.gallery,
                             );
                             setState(() {
-                              // imagePath = image!.path;
+                              myTheam.imagePath = image!.path;
                             });
                           },
                           icon: const Icon(
@@ -212,6 +237,7 @@ class _AddContactPageState extends State<AddContactPage> {
                 isActive: (initialIndex == 1) ? true : false,
                 title: const Text("First Name"),
                 content: TextFormField(
+                  controller: firstnamec,
                   validator: (val) {
                     if (val!.isEmpty) {
                       return "Please Enter First Name";
@@ -220,7 +246,7 @@ class _AddContactPageState extends State<AddContactPage> {
                   },
                   onSaved: (val) {
                     setState(() {
-                      firstname = val;
+                      firstname = val!;
                     });
                   },
                   decoration: InputDecoration(
@@ -240,6 +266,7 @@ class _AddContactPageState extends State<AddContactPage> {
                 isActive: (initialIndex == 2) ? true : false,
                 title: const Text("Last Name"),
                 content: TextFormField(
+                  controller: lastnamec,
                   validator: (val) {
                     if (val!.isEmpty) {
                       return "Please Enter Last name";
@@ -248,7 +275,7 @@ class _AddContactPageState extends State<AddContactPage> {
                   },
                   onSaved: (val) {
                     setState(() {
-                      lastname = val;
+                      lastname = val!;
                     });
                   },
                   decoration: InputDecoration(
@@ -268,6 +295,7 @@ class _AddContactPageState extends State<AddContactPage> {
                 isActive: (initialIndex == 3) ? true : false,
                 title: const Text("Phone Number"),
                 content: TextFormField(
+                  controller: phonenumberc,
                   validator: (val) {
                     if (val!.isEmpty) {
                       return "Please Enter Phone Number";
@@ -277,7 +305,7 @@ class _AddContactPageState extends State<AddContactPage> {
                   keyboardType: TextInputType.phone,
                   onSaved: (val) {
                     setState(() {
-                      phonenumber = val;
+                      phonenumber = val!;
                     });
                   },
                   decoration: InputDecoration(
@@ -297,6 +325,7 @@ class _AddContactPageState extends State<AddContactPage> {
                 isActive: (initialIndex == 4) ? true : false,
                 title: const Text("Email"),
                 content: TextFormField(
+                  controller: emailc,
                   validator: (val) {
                     if (val!.isEmpty) {
                       return "Please Enter Email";
@@ -306,7 +335,7 @@ class _AddContactPageState extends State<AddContactPage> {
                   keyboardType: TextInputType.emailAddress,
                   onSaved: (val) {
                     setState(() {
-                      email = val;
+                      email = val!;
                     });
                   },
                   decoration: InputDecoration(
