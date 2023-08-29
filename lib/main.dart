@@ -1,3 +1,4 @@
+import 'package:contact_diary_app_bhavin/Model/theam_moddel.dart';
 import 'package:contact_diary_app_bhavin/Provider/contact_provider.dart';
 import 'package:contact_diary_app_bhavin/Provider/theam_provider.dart';
 import 'package:contact_diary_app_bhavin/Screens/homepage.dart';
@@ -14,11 +15,14 @@ void main() async {
   SharedPreferences preferences = await SharedPreferences.getInstance();
 
   bool isVisitOnce = preferences.getBool("visited") ?? false;
+  bool saved_theam = preferences.getBool("save_theam") ?? false;
   runApp(
     MultiProvider(
       providers: [
         ChangeNotifierProvider<TheamProvider>(
-          create: (context) => TheamProvider(),
+          create: (context) => TheamProvider(
+            myTheamModel: TheamChange(isDark: saved_theam),
+          ),
         ),
         ChangeNotifierProvider<ContactProvider>(
           create: (context) => ContactProvider(),

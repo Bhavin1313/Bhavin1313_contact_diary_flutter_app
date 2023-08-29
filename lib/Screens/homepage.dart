@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:contact_diary_app_bhavin/Model/contact_model.dart';
 import 'package:contact_diary_app_bhavin/Provider/contact_provider.dart';
@@ -63,7 +61,7 @@ class _HomePageState extends State<HomePage> {
             margin: EdgeInsets.all(10),
             height: 50,
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20), color: Colors.grey),
+                borderRadius: BorderRadius.circular(20), color: Colors.white),
             child: Row(
               children: [
                 Expanded(
@@ -71,20 +69,22 @@ class _HomePageState extends State<HomePage> {
                   child: Container(
                     height: 40,
                     decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.grey,
+                    ),
+                    child: Icon(
+                      Icons.person,
+                      size: 35,
                       color: Colors.white,
-                      // image: DecorationImage(
-                      //   image: MemoryImage(
-                      //       File(myTheam.imagePath!).readAsBytesSync()),
-                      // ),
                     ),
                   ),
                 ),
                 Expanded(
                   flex: 10,
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text("${ContactProvider.ContactList[i].firstname}"),
                           SizedBox(
@@ -93,8 +93,16 @@ class _HomePageState extends State<HomePage> {
                           Text("${ContactProvider.ContactList[i].lastname}"),
                         ],
                       ),
-                      Text("${ContactProvider.ContactList[i].phonenumber}"),
+                      Text("+91 ${ContactProvider.ContactList[i].phonenumber}"),
                     ],
+                  ),
+                ),
+                Expanded(
+                  flex: 3,
+                  child: Icon(
+                    Icons.call,
+                    color: Colors.green,
+                    size: 35,
                   ),
                 ),
               ],

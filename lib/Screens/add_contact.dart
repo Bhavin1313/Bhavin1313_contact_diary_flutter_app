@@ -64,9 +64,7 @@ class _AddContactPageState extends State<AddContactPage> {
                 formKey.currentState!.save();
                 setState(
                   () {
-                    Timer(const Duration(seconds: 3), () {
-                      Navigator.pop(context);
-                    });
+                    Timer(const Duration(seconds: 3), () {});
                     showDialog(
                       context: context,
                       builder: (context) => AlertDialog(
@@ -102,7 +100,7 @@ class _AddContactPageState extends State<AddContactPage> {
                 emailc.clear();
                 phonenumberc.clear();
 
-                Navigator.pop(context);
+                Navigator.pushNamed(context, 'home');
               } else {
                 showDialog(
                   context: context,
