@@ -1,9 +1,10 @@
 import 'package:contact_diary_app_bhavin/Model/theam_moddel.dart';
 import 'package:contact_diary_app_bhavin/Provider/contact_provider.dart';
 import 'package:contact_diary_app_bhavin/Provider/theam_provider.dart';
+import 'package:contact_diary_app_bhavin/Screens/detail_page.dart';
 import 'package:contact_diary_app_bhavin/Screens/homepage.dart';
 import 'package:contact_diary_app_bhavin/Utils/mytheam.dart';
-import 'package:contact_diary_app_bhavin/one_time_intro_page.dart';
+import 'package:contact_diary_app_bhavin/Screens/one_time_intro_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -41,6 +42,7 @@ void main() async {
           '/': (context) => const One_Time_Intro_Page(),
           'home': (context) => const HomePage(),
           'add_contact_page': (context) => const AddContactPage(),
+          'detail': (context) => const Detail_Page(),
         },
       ),
     ),

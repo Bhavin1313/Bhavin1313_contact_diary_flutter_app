@@ -58,54 +58,27 @@ class _HomePageState extends State<HomePage> {
         itemCount: ContactProvider.ContactList.length,
         itemBuilder: (ctx, i) {
           return Container(
-            margin: EdgeInsets.all(10),
-            height: 50,
+            margin: EdgeInsets.all(5),
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20), color: Colors.white),
-            child: Row(
-              children: [
-                Expanded(
-                  flex: 3,
-                  child: Container(
-                    height: 40,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.grey,
-                    ),
-                    child: Icon(
-                      Icons.person,
-                      size: 35,
-                      color: Colors.white,
-                    ),
-                  ),
+              borderRadius: BorderRadius.circular(20),
+              color: Colors.white,
+            ),
+            child: ListTile(
+              onTap: () {
+                Navigator.pushNamed(context, 'detail',
+                    arguments: ContactProvider.ContactList[i]);
+              },
+              leading: CircleAvatar(),
+              title: Text(
+                  "${ContactProvider.ContactList[i].firstname} ${ContactProvider.ContactList[i].lastname}"),
+              subtitle: Text("${ContactProvider.ContactList[i].phonenumber}"),
+              trailing: IconButton(
+                onPressed: () {},
+                icon: Icon(
+                  Icons.phone,
+                  color: Colors.green,
                 ),
-                Expanded(
-                  flex: 10,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          Text("${ContactProvider.ContactList[i].firstname}"),
-                          SizedBox(
-                            width: 5,
-                          ),
-                          Text("${ContactProvider.ContactList[i].lastname}"),
-                        ],
-                      ),
-                      Text("+91 ${ContactProvider.ContactList[i].phonenumber}"),
-                    ],
-                  ),
-                ),
-                Expanded(
-                  flex: 3,
-                  child: Icon(
-                    Icons.call,
-                    color: Colors.green,
-                    size: 35,
-                  ),
-                ),
-              ],
+              ),
             ),
           );
         },
