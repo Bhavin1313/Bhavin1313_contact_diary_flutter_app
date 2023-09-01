@@ -41,6 +41,10 @@ dependencies:
   provider:
   introduction_screen: ^3.1.11
   shared_preferences: ^2.2.0
+  url_launcher:
+  share_extend:
+  local_auth:
+
 
 dev_dependencies:
   flutter_test:

@@ -1,11 +1,11 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:contact_diary_app_bhavin/Model/contact_model.dart';
-import 'package:contact_diary_app_bhavin/Provider/contact_provider.dart';
 import 'package:contact_diary_app_bhavin/Provider/theam_provider.dart';
-import 'package:contact_diary_app_bhavin/Utils/mytheam.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+import '../Provider/contact_provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -68,12 +68,27 @@ class _HomePageState extends State<HomePage> {
                 Navigator.pushNamed(context, 'detail',
                     arguments: ContactProvider.ContactList[i]);
               },
-              leading: CircleAvatar(),
+              leading: CircleAvatar(
+                backgroundColor: Colors.lightBlue.withOpacity(.5),
+                child: Text(
+                  "${ContactProvider.ContactList[i].firstname[0]}",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
               title: Text(
                   "${ContactProvider.ContactList[i].firstname} ${ContactProvider.ContactList[i].lastname}"),
               subtitle: Text("${ContactProvider.ContactList[i].phonenumber}"),
               trailing: IconButton(
-                onPressed: () {},
+                onPressed: () async {
+                  await launchUrl(
+                    Uri.parse(
+                        "tel:+91${ContactProvider.ContactList[i].phonenumber}"),
+                  );
+                },
                 icon: Icon(
                   Icons.phone,
                   color: Colors.green,
